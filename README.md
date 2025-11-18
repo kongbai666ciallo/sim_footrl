@@ -23,20 +23,18 @@ footrl/
 2. Python 环境中可访问扩展依赖包：`isaaclab`, `isaaclab_tasks`, `isaaclab_rl`, `rsl_rl_lib`。
 
 ## 安装方式
-推荐在 Isaac Sim 的 Python 下进行可编辑安装：
-```bash
-/path/to/isaac-sim/python.sh -m pip install -e /absolute/path/to/footrl/source/sim_1
-```
-> 如果你已经在主仓库中，该路径可能类似：`/home/USER/Download/project/sim_1/footrl/source/sim_1`。
-
-安装完成后可以验证扩展加载：
-```python
-python -c "import footrl.tasks; print('footrl tasks imported OK')"
-```
-
+进入你的isaaclab创建的conda环境
+'''bash
+conda activate isaaclab
+'''
+进入目录安装
+'''bash
+cd footrl/source/sim1
+pip install -e .
+'''
 ## 启动训练
 ```bash
-/path/to/isaac-sim/python.sh /absolute/path/to/footrl/scripts/rsl_rl/train.py \
+python /absolute/path/to/footrl/scripts/rsl_rl/train.py \
   --task Template-MyTask-Direct-v0 \
   --num_envs 16 \
   --max_iterations 1000 \
@@ -45,26 +43,8 @@ python -c "import footrl.tasks; print('footrl tasks imported OK')"
 
 ## 推理/回放
 ```bash
-/path/to/isaac-sim/python.sh /absolute/path/to/footrl/scripts/rsl_rl/play.py \
+python /absolute/path/to/footrl/scripts/rsl_rl/play.py \
   --task Template-MyTask-Direct-v0 \
   --checkpoint /path/to/logs/rsl_rl/my_task_direct/<run>/checkpoints/model_*.pt
 ```
 
-## 常见问题
-| 问题 | 可能原因 | 解决办法 |
-|------|----------|----------|
-| ModuleNotFoundError: isaaclab.* | 未在 Isaac Sim 提供的 Python 下运行 | 使用 Isaac Sim `python.sh` 启动脚本 |
-| 无法导入 footrl.tasks | 未执行 pip 安装或路径错误 | 确认 `pip install -e source/sim_1` 成功 |
-| 训练奖励很低 | 初始策略为随机，观察归一化或奖励权重需调节 | 调整 `rsl_rl_ppo_cfg.py` 中网络结构或 gamma/entropy |
-
-## 后续改进建议
-- 增加多步态命令采样（速度 / 方向随机化）。
-- 添加多 Agent 扩展示例（DirectMARL）。
-- 引入 wandb / tensorboard 记录（启用 `--logger` 参数）。
-- 编写更丰富的奖励项与终止条件。
-
-## License
-项目沿用 BSD 3-Clause (见 LICENSE)。
-
-## 致谢
-基于 Isaac Lab 项目结构和 RSL-RL 框架示例进行裁剪整合。
