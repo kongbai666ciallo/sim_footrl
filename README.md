@@ -24,14 +24,14 @@ footrl/
 
 ## 安装方式
 进入你的isaaclab创建的conda环境
-'''bash
+```bash
 conda activate isaaclab
-'''
+```
 进入目录安装
-'''bash
+```bash
 cd footrl/source/sim1
 pip install -e .
-'''
+```
 ## 启动训练
 ```bash
 python /absolute/path/to/footrl/scripts/rsl_rl/train.py \
