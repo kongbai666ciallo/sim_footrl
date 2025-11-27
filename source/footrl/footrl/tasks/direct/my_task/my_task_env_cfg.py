@@ -4,12 +4,8 @@ from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.sim import SimulationCfg
 from isaaclab.utils import configclass
 
-try:
-    # 优先使用新包名
-    from footrl.robot import HI_CFG  # type: ignore
-except Exception:
-    # 回退到旧包名，保持兼容
-    from sim_1.robot import HI_CFG  # type: ignore
+# 仅使用重命名后的包路径，避免引用工作区外的旧包名
+from footrl.robot import HI_CFG  # type: ignore
 
 
 @configclass

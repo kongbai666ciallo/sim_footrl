@@ -17,8 +17,24 @@ from setuptools import setup
 
 # Obtain the extension data from the extension.toml file
 EXTENSION_PATH = os.path.dirname(os.path.realpath(__file__))
-# Read the extension.toml file
-EXTENSION_TOML_DATA = toml.load(os.path.join(EXTENSION_PATH, "config", "extension.toml"))
+# Read the extension.toml file (tolerant to parse errors during editable installs)
+try:
+    EXTENSION_TOML_DATA = toml.load(os.path.join(EXTENSION_PATH, "config", "extension.toml"))
+except Exception as e:
+    # Fall back to minimal defaults and warn the user. This helps when running
+    # `pip install -e .` in environments where the extension.toml may contain
+    # keys that a strict TOML parser in the build environment rejects.
+    print("[WARN] Failed to parse extension.toml (continuing with defaults):", e)
+    EXTENSION_TOML_DATA = {
+        "package": {
+            "author": "",
+            "maintainer": "",
+            "repository": "",
+            "version": "0.0.0",
+            "description": "",
+            "keywords": [],
+        }
+    }
 
 # Minimum dependencies required prior to installation
 INSTALL_REQUIRES = [
