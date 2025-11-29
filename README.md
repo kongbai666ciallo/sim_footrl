@@ -24,8 +24,9 @@ footrl/
 
 ## 安装方式
 推荐在 Isaac Sim 的 Python 下进行可编辑安装：
+进入isaaclab的conda环境
 ```bash
-/path/to/isaac-sim/python.sh -m pip install -e /absolute/path/to/footrl/source/sim_1
+pip install -e /absolute/path/to/footrl/source/sim_1
 ```
 > 如果你已经在主仓库中，该路径可能类似：`/home/USER/Download/project/sim_1/footrl/source/sim_1`。
 
