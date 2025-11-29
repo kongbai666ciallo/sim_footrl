@@ -36,7 +36,7 @@ python -c "import footrl.tasks; print('footrl tasks imported OK')"
 
 ## 启动训练
 ```bash
-/path/to/isaac-sim/python.sh /absolute/path/to/footrl/scripts/rsl_rl/train.py \
+python /absolute/path/to/footrl/scripts/rsl_rl/train.py \
   --task Template-MyTask-Direct-v0 \
   --num_envs 16 \
   --max_iterations 1000 \
@@ -45,7 +45,7 @@ python -c "import footrl.tasks; print('footrl tasks imported OK')"
 
 ## 推理/回放
 ```bash
-/path/to/isaac-sim/python.sh /absolute/path/to/footrl/scripts/rsl_rl/play.py \
+python /absolute/path/to/footrl/scripts/rsl_rl/play.py \
   --task Template-MyTask-Direct-v0 \
   --checkpoint /path/to/logs/rsl_rl/my_task_direct/<run>/checkpoints/model_*.pt
 ```
